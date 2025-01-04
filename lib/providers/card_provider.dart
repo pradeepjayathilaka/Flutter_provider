@@ -9,6 +9,11 @@ class CartProvider extends ChangeNotifier {
     return {..._items};
   }
 
+  // Get total number of items in the cart
+  int get itemCount {
+    return _items.length;
+  }
+
   //add item
   void addItem(String productID, double price, String title) {
     if (_items.containsKey(productID)) {

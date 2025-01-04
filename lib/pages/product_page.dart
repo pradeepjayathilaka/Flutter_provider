@@ -31,7 +31,7 @@ class ProductPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => FAvouritePage(),
+                  builder: (context) => FavouritePage(),
                 ),
               );
             },
@@ -68,7 +68,7 @@ class ProductPage extends StatelessWidget {
         itemBuilder: (context, index) {
           final Product product = products[index];
           return Card(
-            child: Consumer(
+            child: Consumer<CartProvider>(
               builder: (BuildContext context, CartProvider cartProvider,
                   Widget? child) {
                 return ListTile(
@@ -83,7 +83,6 @@ class ProductPage extends StatelessWidget {
                       SizedBox(
                         width: 10,
                       ),
-                      // todo :fill this
                       Text(
                         "amount",
                       )
@@ -101,7 +100,7 @@ class ProductPage extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {
-                          CartProvider().addItem(
+                          cartProvider.addItem(
                             product.id,
                             product.price,
                             product.title,
