@@ -81,10 +81,16 @@ class ProductPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: 10,
+                        width: 50,
                       ),
                       Text(
-                        "amount",
+                        cartProvider.items.containsKey(product.id)
+                            ? cartProvider.items[product.id]!.quantity
+                                .toString()
+                            : "0",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
                       )
                     ],
                   ),
@@ -105,8 +111,19 @@ class ProductPage extends StatelessWidget {
                             product.price,
                             product.title,
                           );
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Added to Cart!"),
+                              duration: Duration(seconds: 1),
+                            ),
+                          );
                         },
-                        icon: Icon(Icons.shopping_cart),
+                        icon: Icon(
+                          Icons.shopping_cart,
+                          color: cartProvider.items.containsKey(product.id)
+                              ? Colors.deepOrange
+                              : Colors.grey,
+                        ),
                       ),
                     ],
                   ),
