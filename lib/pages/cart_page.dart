@@ -78,6 +78,30 @@ class CartPage extends StatelessWidget {
                   },
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: Text(
+                  "Total :\$${cartProvider.totalamount.toStringAsFixed(2)}",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: ElevatedButton(
+                    onPressed: () {
+                      cartProvider.clearAll();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Cart Cleared!"),
+                          duration: Duration(seconds: 1),
+                        ),
+                      );
+                    },
+                    child: Text("Clear cart!")),
+              ),
             ],
           );
         },
